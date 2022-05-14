@@ -1,0 +1,37 @@
+nav {
+    border-bottom: 1px solid black;
+}
+
+.nav-item ol {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.nav-item {
+    display: inline-block;
+}
+
+.navigation a::after {
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    font-size: 80%;
+    font-weight: bold;
+    padding: 0 3px;
+}
+
+form.form-example {
+    display: table;
+}
+
+div.form-example {
+    display: table-row;
+}
+
+label, input {
+    display: table-cell;
+    margin-bottom: 10px;
+}
+
+label {
+    padding-right: 10px;
+}
