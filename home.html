@@ -14,17 +14,37 @@
 
 		<form action="" method="get" class="form-example">
 			<div class="form-example">
-			  <label for="name">Enter your name: </label>
-			  <input type="text" name="name" id="name" required>
+			  <label for="title">Title: </label>
+			  <input type="text" name="title" id="title" required>
 			</div>
 			<div class="form-example">
-			  <label for="email">Enter your email: </label>
-			  <input type="email" name="email" id="email" required>
+			  <label for="ingredients">Ingredients: </label>
+			  <input type="text" name="ingredients" id="ingredients" required>
 			</div>
 			<div class="form-example">
-			  <input type="submit" value="Subscribe!">
+				<label for="instructions">Instructions: </label>
+				<input type="text" name="instructions" id="instructions" required>
+			  </div>
+
+			<div class="form-example">
+			  <input type="submit" onclick="submitRecipe()" value="Submit Recipe">
 			</div>
+			<div class="form-example">
+				<input type="submit" onclick="clearValues()" value="Clear Values">
+			  </div>
 		  </form>
+
+		<ul id="recipe-list">
+			<!-- <li>
+			<div class="card">
+				<img src="img_avatar.png" alt="Avatar" style="width:100%">
+				<div class="container">
+					<h4><b>John Doe</b></h4>
+					<p>Architect & Engineer</p>
+				</div>
+				</div>
+			</li> -->
+		</ul>
 		  
 	</body>
 </html>
