@@ -19,7 +19,7 @@ function deleteAllCards() {
 };
 
 function makeUL(targetList, data) {
-	// Clear list
+	// Clear list before generating list
 	while (targetList.firstChild) {
 		targetList.removeChild(targetList.firstChild);
 	}
@@ -36,8 +36,8 @@ function filled(newRecipe) {
 	return (newRecipe.title.length > 0 && newRecipe.ingredients.length > 0 && newRecipe.instructions.length > 0);
 }
 
-function submitRecipe() {
-	const newRecipe = Array.from(document.querySelectorAll("#recipe-form input"))
+function submitRecipe(event) {
+	const newRecipe = Array.from(event.target.form.querySelectorAll("input"))
 	.reduce((acc, input) => ({ ...acc, [input.id]: input.value}), {});
 	if (newRecipe.ingredients.length > 0) {
 		newRecipe.ingredients = newRecipe.ingredients.split(",");
@@ -48,11 +48,12 @@ function submitRecipe() {
 	if (filled(newRecipe) === true) {
 		window.recipes.push(newRecipe);
 		makeUL(document.getElementById("recipe-list"), window.recipes);
+		clearFormValues(event);
 	}
 }
 
-function clearFormValues() {
-	// TODO!!!
+function clearFormValues(event) {
+	event.target.form.reset();
 }
 
 window.onload = function () {
