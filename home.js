@@ -42,7 +42,8 @@ function makeRecipeCard(data) {
 	// 	</div>
 	// </li>
 	let item = document.createElement('li');
-	item.appendChild(document.createTextNode(data.title)); // TODO: add to card from recipe array here
+	item.appendChild(document.createTextNode(data.title)); // TODO: add to card from recipe array here. Make sure to add a delete button for the "extra" thing requirement
+	
 	return item;
 }
 
