@@ -31,16 +31,18 @@ function deleteAllRecipeCards() {
 	makeUL(document.getElementById("recipe-list"), recipes);
 };
 
+function deleteRecipeCard(event) {
+	console.log(event.target);
+}
+
 function makeRecipeCard(data) {
-
-
 	let item = document.createElement('li');
-	// item.appendChild(document.createTextNode(data.title));
-
-	// TODO: add to card from recipe array here. Make sure to add a delete button for the "extra" thing requirement
-
+	const uniqueId = Math.random().toString(16).slice(2)
 	item.innerHTML = 
-	`<div class="card">
+	`<div id="-${data.title}-${uniqueId}" class="card">
+		<div class="card-buttons">
+			<button class="delete-card" onclick="deleteRecipeCard(event)"><b>X</b></button>
+		</div>
 		<div class="container">
 			<div class="card-header">
 				<h2><b>${data.title}</b></h2>

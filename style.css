@@ -55,12 +55,22 @@ label {
 .card {
     background-color: aquamarine;
     margin: 50px;
-    padding-left: 40px;
-    padding-right: 40px;
     border-radius: 15px;
-    width: 20rem;
+    width: 30rem;
 }
 
 .card h2 {
     border-bottom: 2px solid #111;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.delete-card {
+    background-color: rgb(23, 172, 97);
+    color: white;
+    border-radius: 5px;
+    border-color: rgb(23, 172, 97);
 }
