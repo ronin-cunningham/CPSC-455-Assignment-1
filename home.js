@@ -18,27 +18,37 @@ function deleteAllCards() {
 	makeUL(window.recipes);
 };
 
-function makeUL(array) {
+function makeUL(targetList, data) {
 	// Clear list
-	while (document.getElementById("recipe-list").firstChild) {
-		document.getElementById("recipe-list").removeChild(document.getElementById("recipe-list").firstChild);
+	while (targetList.firstChild) {
+		targetList.removeChild(targetList.firstChild);
 	}
 
 	// Re-generate list
-    for(let i = 0; i < array.length; i++) {
+    for(let i = 0; i < data.length; i++) {
         let item = document.createElement('li');
-        item.appendChild(document.createTextNode(array[i].title)); // add to card from recipe array here!!!
-		document.getElementById("recipe-list").appendChild(item);
+        item.appendChild(document.createTextNode(data[i].title)); // add to card from recipe array here!!!
+		targetList.appendChild(item);
     }
 };
+
+function filled(newRecipe) {
+	return (newRecipe.title.length > 0 && newRecipe.ingredients.length > 0 && newRecipe.instructions.length > 0);
+}
 
 function submitRecipe() {
 	const newRecipe = Array.from(document.querySelectorAll("#recipe-form input"))
 	.reduce((acc, input) => ({ ...acc, [input.id]: input.value}), {});
-	newRecipe.ingredients = newRecipe.ingredients.split(",");
-	newRecipe.instructions = newRecipe.instructions.split(",");
-	window.recipes.push(newRecipe);
-	makeUL(window.recipes);
+	if (newRecipe.ingredients.length > 0) {
+		newRecipe.ingredients = newRecipe.ingredients.split(",");
+	}
+	if (newRecipe.instructions.length > 0) {
+		newRecipe.instructions = newRecipe.instructions.split(",");
+	}
+	if (filled(newRecipe) === true) {
+		window.recipes.push(newRecipe);
+		makeUL(document.getElementById("recipe-list"), window.recipes);
+	}
 }
 
 function clearFormValues() {
@@ -47,6 +57,6 @@ function clearFormValues() {
 
 window.onload = function () {
 	window.recipes = JSON.parse(stringRecipes);
-    makeUL(recipes);
+    makeUL(document.getElementById("recipe-list"), recipes);
 };
 
