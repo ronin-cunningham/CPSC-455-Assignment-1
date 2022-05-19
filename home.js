@@ -98,4 +98,3 @@ function submitRecipe(event) {
 function clearFormValues(event) {
 	event.target.form.reset();
 }
-
