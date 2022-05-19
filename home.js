@@ -2,13 +2,13 @@ let stringDatabaseRecipes = JSON.stringify(
 	[
 		{
 			title: "pizza",
-			ingredients: ["dough", "salami", "cheese"],
-			instructions: ["Need the dough", "add the salami and cheese", "bake in oven"]
+			ingredients: ["dough", " salami", " cheese"],
+			instructions: ["Knead the dough", " add the salami and cheese", " bake in oven"]
 		},
 		{
 			title: "pasta",
-			ingredients: ["dough", "tomatoes", "cheese"],
-			instructions: ["Need the dough", "add the tomatoes and cheese", "boil the pasta", "pour sauce"]
+			ingredients: ["dough", " tomatoes", " cheese"],
+			instructions: ["Knead the dough", " add the tomatoes and cheese", " boil the pasta", " pour sauce"]
 		},
 	]
 );
@@ -32,18 +32,29 @@ function deleteAllRecipeCards() {
 };
 
 function makeRecipeCard(data) {
-	// <li>
-	// <div class="card">
-	// 	<img src="img_avatar.png" alt="Avatar" style="width:100%">
-	// 	<div class="container">
-	// 		<h4><b>John Doe</b></h4>
-	// 		<p>Architect & Engineer</p>
-	// 	</div>
-	// 	</div>
-	// </li>
+
+
 	let item = document.createElement('li');
-	item.appendChild(document.createTextNode(data.title)); // TODO: add to card from recipe array here. Make sure to add a delete button for the "extra" thing requirement
-	
+	// item.appendChild(document.createTextNode(data.title));
+
+	// TODO: add to card from recipe array here. Make sure to add a delete button for the "extra" thing requirement
+
+	item.innerHTML = 
+	`<div class="card">
+		<div class="container">
+			<h2><b>${data.title}</b></h2>
+			<div>
+				<div>
+					<h4>Ingredients</h4>
+					<p>${data.ingredients}<p>
+				</div>
+				<div>
+				<h4>Instructions</h4>
+				<p>${data.instructions}<p>
+				</div>
+			</div>
+		</div>
+	</div>`;
 	return item;
 }
 
