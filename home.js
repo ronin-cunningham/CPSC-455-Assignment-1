@@ -13,22 +13,41 @@ let stringRecipes = JSON.stringify(
 	]
 );
 
+window.onload = function () {
+	window.recipes = JSON.parse(stringRecipes); // load from "database"
+    makeUL(document.getElementById("recipe-list"), recipes);
+};
+
 function deleteAllCards() {
 	window.recipes = [];
 	makeUL(window.recipes);
 };
 
-function makeUL(targetList, data) {
+function makeRecipeCard(data) {
+	// <li>
+	// <div class="card">
+	// 	<img src="img_avatar.png" alt="Avatar" style="width:100%">
+	// 	<div class="container">
+	// 		<h4><b>John Doe</b></h4>
+	// 		<p>Architect & Engineer</p>
+	// 	</div>
+	// 	</div>
+	// </li>
+	let item = document.createElement('li');
+	item.appendChild(document.createTextNode(data.title)); // TODO: add to card from recipe array here
+	return item;
+}
+
+function makeUL(targetList, dataArray) {
 	// Clear list before generating list
 	while (targetList.firstChild) {
 		targetList.removeChild(targetList.firstChild);
 	}
 
 	// Re-generate list
-    for(let i = 0; i < data.length; i++) {
-        let item = document.createElement('li');
-        item.appendChild(document.createTextNode(data[i].title)); // add to card from recipe array here!!!
-		targetList.appendChild(item);
+    for(const data of dataArray) {
+		const card = makeRecipeCard(data);
+		targetList.appendChild(card);
     }
 };
 
@@ -55,9 +74,4 @@ function submitRecipe(event) {
 function clearFormValues(event) {
 	event.target.form.reset();
 }
-
-window.onload = function () {
-	window.recipes = JSON.parse(stringRecipes);
-    makeUL(document.getElementById("recipe-list"), recipes);
-};
 
