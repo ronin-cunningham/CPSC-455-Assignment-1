@@ -14,11 +14,17 @@ let stringRecipes = JSON.stringify(
 );
 
 function deleteAllCards() {
-	// TODO !!!
+	window.recipes = [];
+	makeUL(window.recipes);
 };
 
 function makeUL(array) {
-	// deleteAllCards();
+	// Clear list
+	while (document.getElementById("recipe-list").firstChild) {
+		document.getElementById("recipe-list").removeChild(document.getElementById("recipe-list").firstChild);
+	}
+
+	// Re-generate list
     for(let i = 0; i < array.length; i++) {
         let item = document.createElement('li');
         item.appendChild(document.createTextNode(array[i].title)); // add to card from recipe array here!!!
@@ -35,7 +41,7 @@ function submitRecipe() {
 	makeUL(window.recipes);
 }
 
-function clearValues() {
+function clearFormValues() {
 	// TODO!!!
 }
 
@@ -44,5 +50,3 @@ window.onload = function () {
     makeUL(recipes);
 };
 
-
-// TODO: left off at the bug that flashes the list and doesn't append to the list properly
