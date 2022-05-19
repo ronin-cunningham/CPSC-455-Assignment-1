@@ -1,4 +1,4 @@
-let stringRecipes = JSON.stringify(
+let stringDatabaseRecipes = JSON.stringify(
 	[
 		{
 			title: "pizza",
@@ -14,13 +14,21 @@ let stringRecipes = JSON.stringify(
 );
 
 window.onload = function () {
-	window.recipes = JSON.parse(stringRecipes); // load from "database"
+	const recipes = updateDatabase(); // load from "database"
     makeUL(document.getElementById("recipe-list"), recipes);
 };
 
-function deleteAllCards() {
-	window.recipes = [];
-	makeUL(window.recipes);
+// updates "database" if passed in new recipes array. Always returns current state of updated "database"
+function updateDatabase(recipes) {
+	if (recipes) {
+		stringDatabaseRecipes = JSON.stringify(recipes);
+	}
+	return JSON.parse(stringDatabaseRecipes);
+}
+
+function deleteAllRecipeCards() {
+	const recipes = updateDatabase([]);
+	makeUL(document.getElementById("recipe-list"), recipes);
 };
 
 function makeRecipeCard(data) {
@@ -65,8 +73,10 @@ function submitRecipe(event) {
 		newRecipe.instructions = newRecipe.instructions.split(",");
 	}
 	if (filled(newRecipe) === true) {
-		window.recipes.push(newRecipe);
-		makeUL(document.getElementById("recipe-list"), window.recipes);
+		const recipes = updateDatabase();
+		recipes.push(newRecipe);
+		updateDatabase(recipes);
+		makeUL(document.getElementById("recipe-list"), recipes);
 		clearFormValues(event);
 	}
 }
