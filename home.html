@@ -11,34 +11,35 @@
 				<li class="nav-item"><a href="about.html">About</a></li>
 			</ol>
 		</nav>
+		<div class="container">
+			<form id="recipe-form" method="get" class="recipe-form">
 
-		<form id="recipe-form" action="" method="get" class="form-example">
-			<div class="form-example">
-			  <label for="title">Title: </label>
-			  <input type="text" name="title" id="title" required>
-			</div>
-			<div class="form-example">
-			  <label for="ingredients">Ingredients: </label>
-			  <input type="text" name="ingredients" id="ingredients" required>
-			</div>
-			<div class="form-example">
-				<label for="instructions">Instructions: </label>
-				<input type="text" name="instructions" id="instructions" required>
-			</div>
+				<div class="recipe-inputs">
+					<div class="recipe-field">
+						<label for="title">Title: </label>
+						<input type="text" name="title" id="title" required>
+					</div>
+					<div class="recipe-field">
+						<label for="ingredients">Ingredients: </label>
+						<input type="text" name="ingredients" id="ingredients" required>
+					</div>
+					<div class="recipe-field">
+						<label for="instructions">Instructions: </label>
+						<input type="text" name="instructions" id="instructions" required>
+					</div>
+				</div>
 
-			<div class="form-example">
-			  <button type="button" onclick="submitRecipe(event)">Submit</button>
-			</div>
-			<div class="form-example">
-				<button type="button" onclick="clearFormValues(event)"> Clear </button>
-			</div>
-			<div class="form-example">
-				<button type="button" onclick="deleteAllRecipeCards()"> Delete All Recipes </button>
-			</div>
-		  </form>
+				<div class="recipe-buttons">
+						<button type="button" onclick="submitRecipe(event)">Submit</button>
 
-		<ul id="recipe-list">
-		</ul>
-		  
+						<button type="button" onclick="clearFormValues(event)"> Clear </button>
+
+						<button type="button" onclick="deleteAllRecipeCards()"> Delete All Recipes </button>
+				</div>
+			</form>
+
+			<ul id="recipe-list">
+			</ul>
+		</div>
 	</body>
 </html>

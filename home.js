@@ -1,12 +1,12 @@
 let stringDatabaseRecipes = JSON.stringify(
 	[
 		{
-			title: "pizza",
+			title: "Pizza",
 			ingredients: ["dough", " salami", " cheese"],
 			instructions: ["Knead the dough", " add the salami and cheese", " bake in oven"]
 		},
 		{
-			title: "pasta",
+			title: "Pasta",
 			ingredients: ["dough", " tomatoes", " cheese"],
 			instructions: ["Knead the dough", " add the tomatoes and cheese", " boil the pasta", " pour sauce"]
 		},
@@ -42,13 +42,15 @@ function makeRecipeCard(data) {
 	item.innerHTML = 
 	`<div class="card">
 		<div class="container">
-			<h2><b>${data.title}</b></h2>
-			<div>
-				<div>
+			<div class="card-header">
+				<h2><b>${data.title}</b></h2>
+			</div>
+			<div class="container">
+				<div class="container">
 					<h4>Ingredients</h4>
 					<p>${data.ingredients}<p>
 				</div>
-				<div>
+				<div class="container">
 				<h4>Instructions</h4>
 				<p>${data.instructions}<p>
 				</div>
