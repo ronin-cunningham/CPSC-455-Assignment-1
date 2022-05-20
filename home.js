@@ -3,12 +3,14 @@ let stringDatabaseRecipes = JSON.stringify(
 		{
 			title: "Pizza",
 			ingredients: ["dough", " salami", " cheese"],
-			instructions: ["Knead the dough", " add the salami and cheese", " bake in oven"]
+			instructions: ["Knead the dough", " add the salami and cheese", " bake in oven"],
+			uniqueId: Math.random().toString(16).slice(2)
 		},
 		{
 			title: "Pasta",
 			ingredients: ["dough", " tomatoes", " cheese"],
-			instructions: ["Knead the dough", " add the tomatoes and cheese", " boil the pasta", " pour sauce"]
+			instructions: ["Knead the dough", " add the tomatoes and cheese", " boil the pasta", " pour sauce"],
+			uniqueId: Math.random().toString(16).slice(2)
 		},
 	]
 );
@@ -31,17 +33,20 @@ function deleteAllRecipeCards() {
 	makeUL(document.getElementById("recipe-list"), recipes);
 };
 
-function deleteRecipeCard(event) {
-	console.log(event.target);
+function deleteRecipeCard(button) {
+	const targetId = button.id;
+	const recipes = updateDatabase();
+	const newRecipes = recipes.filter(function(e) { return e.uniqueId !== targetId })
+	updateDatabase(newRecipes);
+	makeUL(document.getElementById("recipe-list"), newRecipes);
 }
 
 function makeRecipeCard(data) {
 	let item = document.createElement('li');
-	const uniqueId = Math.random().toString(16).slice(2)
 	item.innerHTML = 
-	`<div id="-${data.title}-${uniqueId}" class="card">
+	`<div id="card-${data.uniqueId}" class="card">
 		<div class="card-buttons">
-			<button class="delete-card" onclick="deleteRecipeCard(event)"><b>X</b></button>
+			<button id="${data.uniqueId}" class="delete-card" onclick="deleteRecipeCard(this)"><b>X</b></button>
 		</div>
 		<div class="container">
 			<div class="card-header">
@@ -88,6 +93,7 @@ function submitRecipe(event) {
 	if (newRecipe.instructions.length > 0) {
 		newRecipe.instructions = newRecipe.instructions.split(",");
 	}
+	newRecipe.uniqueId = Math.random().toString(16).slice(2);
 	if (filled(newRecipe) === true) {
 		const recipes = updateDatabase();
 		recipes.push(newRecipe);
