@@ -84,8 +84,8 @@ function filled(newRecipe) {
 	return (newRecipe.title.length > 0 && newRecipe.ingredients.length > 0 && newRecipe.instructions.length > 0);
 }
 
-function submitRecipe(event) {
-	const newRecipe = Array.from(event.target.form.querySelectorAll("input"))
+function submitRecipe(button) {
+	const newRecipe = Array.from(button.form.querySelectorAll("input"))
 	.reduce((acc, input) => ({ ...acc, [input.id]: input.value}), {});
 	if (newRecipe.ingredients.length > 0) {
 		newRecipe.ingredients = newRecipe.ingredients.split(",");
@@ -99,10 +99,10 @@ function submitRecipe(event) {
 		recipes.push(newRecipe);
 		updateDatabase(recipes);
 		makeUL(document.getElementById("recipe-list"), recipes);
-		clearFormValues(event);
+		clearFormValues(button);
 	}
 }
 
-function clearFormValues(event) {
-	event.target.form.reset();
+function clearFormValues(button) {
+	button.form.reset();
 }
