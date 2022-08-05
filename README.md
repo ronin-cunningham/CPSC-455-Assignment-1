@@ -1,2 +1,1 @@
-CPSC-455-Assignment-1
-https://blogs.ubc.ca/cpsc4552022s/unit-1-html-css-js/
+Link to backend: https://github.com/ronin-cunningham/My-Recipes-Backend
